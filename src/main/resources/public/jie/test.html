@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <link rel="stylesheet" href="../../css/global.css">
+</head>
+<body>
+<div class="layui-form-item layui-form-text">
+    <div class="layui-input-block">
+        <textarea id="L_content" name="artcontent" required lay-verify="required" placeholder="详细描述" class="layui-textarea fly-editor" style="height: 260px;" ></textarea>
+    </div>
+</div>
+<button onclick=test>此时</button>
+</body>
+<script src="../../layui/layui.all.js"></script>
+<script>
+    layui.cache.page = 'jie';
+    layui.cache.user = {
+        username: '游客'
+        ,uid: -1
+        ,avatar: '../../images/avatar/00.jpg'
+        ,experience: 83
+        ,sex: '男'
+    };
+    layui.config({
+        version: "3.0.0"
+        ,base: '../../mods/'
+    }).extend({
+        fly: 'index'
+    }).use('fly');
+</script>
+<script>
+    function test() {
+        var layedit = layui.layedit
+        var index = layedit.build('L_content');
+        var content=layedit.getContent(index);
+        alert(content);
+    }
+</script>
+</html>

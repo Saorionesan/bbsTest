@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapper接口类对应的位置-->
+<mapper namespace="com.epoint.bbs.model.mapper.ArticleMapper">
+    <insert id="addArticle" parameterType="com.epoint.bbs.model.entity.Article">
+        INSERT INTO article (
+			artuserid,
+			arttitle,
+			arttypename,
+			artcontent,
+			artcretime,
+			artview,
+			artcomnum,
+			artkiss
+		) VALUES (
+        	#{artuserid},
+			#{arttitle},
+			#{arttypename},
+			#{artcontent},
+			#{artcretime},
+			#{artview},
+			#{artcomnum},
+			#{artkiss}
+		)
+    </insert>
+	<select id="getArticleByTitle" resultType="com.epoint.bbs.model.entity.Article">
+		SELECT * FROM article WHERE arttitle=#{title}
+	</select>
+	<!--注意此处返回值应该为所查询的对象的类型-->
+    <select id="getAllArticleByUserId" resultType="com.epoint.bbs.model.entity.Article">
+		SELECT * FROM article WHERE artuserid=#{userid}
+	</select>
+	<select id="getArticleById" resultType="com.epoint.bbs.model.entity.Article">
+		SELECT * FROM article WHERE artid=#{artid}
+	</select>
+	<update id="updateView">
+      UPDATE article SET artview=artview+1 WHERE artid=#{artid}
+	</update>
+</mapper>

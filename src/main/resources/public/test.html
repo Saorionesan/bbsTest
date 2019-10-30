@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <span >{{peps.userName}}</span>
+    <!-- v-text 显示数据-->
+    <!--v -text 会覆盖标签中的值 但是查询表达式不会覆盖 并且v-text没有闪烁的问题-->
+    <h4 v-text="msg" >123</h4>
+    <!--v-html 将数据作为html语言显示-->
+    <span v-html="msg2"></span>
+    <!--v -bind 是vue中用于绑定属性的指令-->
+    <!-- v-bind 可以写合法的js表达式-->
+    <input v-bind:title="mytitle" v-on:click="show" type="button" value="安装牛"/>
+    <!--v -on 用于绑定事件机制-->
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="../../layui/layui.js"></script>
+<script>
+    layui.use(['jquery'], function(){
+        var $ = layui.jquery;
+        $.ajax({
+            url:'../../user/getUser.do',
+            type:'POST',
+            contentType: 'application/x-www-form-urlencoded',
+            cache: false,
+            success:function(data){
+                if (data.state == 200) {
+                    var vm = new Vue({
+                        el: '#app',
+                        data: {
+                            peps:data.data,
+                            msg:'test',
+                            msg2:'<h1>wwwwwwwww</h1>',
+                            mytitle:'自我定义',
+                            methods:{
+                             //这个methods中定义了当前vue实例所有可用的方法
+                                show:function () {
+                                    alert("打印")
+                                }
+                            }
+                        }
+                    });
+                }else {
+                    layer.msg(data.message);
+                }
+            }
+        });
+    });
+</script>
+</html>

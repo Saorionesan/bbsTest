@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapper接口类对应的位置-->
+<mapper namespace="com.epoint.bbs.model.mapper.CollectMapper">
+   <insert id="addCollect" parameterType="com.epoint.bbs.model.entity.Collect">
+      INSERT INTO collect (
+      colartid,
+      coluserid,
+      colarttitle,
+      coltime
+      ) VALUES (
+      #{colartid},
+      #{coluserid},
+      #{colarttitle},
+      #{coltime}
+      )
+   </insert>
+<select id="getAllCollects" resultType="com.epoint.bbs.model.entity.Collect">
+   SELECT * FROM collect WHERE coluserid=#{coluserid}
+</select>
+</mapper>
